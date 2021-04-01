@@ -1,0 +1,179 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="NurseninButigi.Main" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Nursen'in Butiği</title>
+    <link href="/Style.css" rel="stylesheet" />
+
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+
+    <script type="text/javascript">
+
+        $("document").ready(function () {
+
+            $("header nav ul li.Anne-wrap").mouseover(function () {
+                $("header nav ul li.Anne-wrap .Anne").css("display","block")
+            })
+            $("header nav ul li.Anne-wrap").mouseleave(function () {
+                $("header nav ul li.Anne-wrap .Anne").css("display","none")
+            })
+
+        })
+
+         $("document").ready(function () {
+
+            $("header nav ul li.Kız-wrap").mouseover(function () {
+                $("header nav ul li.Kız-wrap .Kız").css("display","block")
+            })
+            $("header nav ul li.Kız-wrap").mouseleave(function () {
+                $("header nav ul li.Kız-wrap .Kız").css("display","none")
+            })
+
+        })
+
+    </script>    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+          
+        <div id="wrapper">
+
+            <header>
+
+                <div class="logo">
+                    BUTİĞİM
+                </div>
+
+                <nav>
+
+                    <ul>
+                        <li>
+                            <a href="Default.aspx">Anasayfa</a>
+                        </li>
+                          <li class="Anne-wrap">
+                            <a href="urunler.aspx">Anne</a>
+                            <div class="Anne">
+                                <ul>
+                                    <li > <a href="urunler.aspx?tip=kadinbluz">Bluz</a></li>
+                                    <li > <a href="urunler.aspx?tip=kadinetek">Etek</a></li>
+                                    <li > <a href="urunler.aspx?tip=kadinelbise">Elbise</a></li>
+                                    
+                                </ul>
+                            </div>
+
+                        </li>
+                            <li class="Kız-wrap">
+                            <a href="urunler.aspx">Kız</a>
+                            <div class="Kız">
+                                <ul>
+                                    <li > <a href="urunler.aspx?tip=kizbluz">Bluz</a></li>
+                                    <li > <a href="urunler.aspx?tip=kizetek">Etek</a></li>
+                                    <li > <a href="urunler.aspx?tip=kizelbise">Elbise</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <a href="Hakkımızda.aspx">Hakkımızda</a>
+                        </li>
+                        <li>
+                            <a href="iletisim.aspx">İletişim</a>
+                        </li>
+                    </ul>
+
+                </nav>
+
+                <div class="Arama-wrap">
+
+                    <asp:TextBox ID="textArama" CssClass="textArama" runat="server" placeholder="Arama" />
+
+                    <asp:Button ID="buttonArama" CssClass="buttonArama" Text="Ara" runat="server" />
+
+                </div>
+            </header>
+
+            <div class="banner">
+                Nursen'in Butiği
+            </div>
+
+            <div class="sol-taraf">
+
+                <div class="Hizli-kayit">
+
+                    <div class="ust">
+                        Hızlı Kayıt
+                    </div>
+
+                    <div class="alt">
+
+                        <div class="kullanici">
+
+                        <span>Kullanıcı Adı</span>
+                        <asp:TextBox ID="txtKullaniciAdi" CssClass="textbox" runat="server" />
+
+                        </div>
+                        <div class="sifre">
+
+                        <span>Şifre</span>
+                        <asp:TextBox ID="txtSifre" CssClass="textbox" runat="server" />
+
+                        </div>
+
+                        <asp:Button ID="btnKayit" CssClass="btnKayit" Text="Kaydet" runat="server" OnClick="btnKayit_Click" />
+                        <asp:Label ID="lblSonuc" Text="" runat="server" />
+
+                    </div>
+
+                </div>
+
+                     <div class="indirimler">
+
+                         <div class="ust">
+                             İndirimler
+                         </div>
+
+                         <div class="alt">
+
+                             <asp:ListView ID="lstindirim" runat="server">
+                                 <ItemTemplate>
+                                     <div class="indirim-wrap">
+                                 <asp:Label Text='<%#Eval("Baslik") %>' runat="server" /><br />
+                                 <asp:Label Text='<%#Eval("indirim") %>' runat="server" /><br />
+                                 <asp:Label Text='<%#Eval("Tarih") %>' runat="server" />
+                             </div>
+                                     <br />
+                                 </ItemTemplate>
+                             </asp:ListView>
+
+                             
+
+                         </div>
+                </div>
+
+            </div>
+
+            <div class="Icerik">
+
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+
+            </asp:ContentPlaceHolder>
+
+            </div>
+
+            <footer>
+                Bir Nursen Sever Tasarımıdır © 2019.
+            </footer>
+
+        </div>
+
+
+            
+        
+    </form>
+</body>
+</html>
